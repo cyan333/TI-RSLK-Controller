@@ -14,6 +14,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        leftRightIndicator.text = String(Int(leftRightSliderOutlet.value), radix: 2)
+        goBackIndicator.text = String(Int(goBackSliderOutlet.value), radix: 2)
+        goBackSliderOutlet.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
     }
 
     var manager:CBCentralManager!
@@ -118,40 +121,61 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
     }
     
-    @IBAction func left(_ sender: Any) {
-        print("left")
-        var value: UInt8 = 1
+//    @IBAction func left(_ sender: Any) {
+//        print("left")
+//        var value: UInt8 = 1
+//
+//        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
+//
+//        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+//    }
+//
+//    @IBAction func right(_ sender: Any) {
+//        print("right")
+//        var value: UInt8 = 2
+//
+//        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
+//
+//        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+//    }
+//
+//    @IBAction func forward(_ sender: Any) {
+//        print("forward")
+//        var value: UInt8 = 3
+//
+//        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
+//
+//        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+//    }
+//
+//    @IBAction func backward(_ sender: Any) {
+//        print("backward")
+//        var value: UInt8 = 4
+//
+//        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
+//
+//        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+//    }
+    
+    @IBOutlet var leftRightSliderOutlet: UISlider!
+    @IBOutlet var leftRightIndicator: UILabel!
+    @IBOutlet var goBackSliderOutlet: UISlider!
+    @IBOutlet var goBackIndicator: UILabel!
+    
+    @IBAction func leftRightSlider(_ sender: UISlider) {
+        var leftRightText:String
+        leftRightText = String(Int(leftRightSliderOutlet.value), radix: 2)
+        leftRightIndicator.text = leftRightText
         
-        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
-
+        //var leftRightValue:Int? = Int(leftRightText)
+        let data = NSData(bytes: &leftRightText, length: MemoryLayout<UInt8>.size)
         peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
     }
     
-    @IBAction func right(_ sender: Any) {
-        print("right")
-        var value: UInt8 = 2
-        
-        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
-        
-        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+    @IBAction func goBackSlider(_ sender: UISlider) {
+        goBackIndicator.text = String(Int(goBackSliderOutlet.value), radix: 2)
     }
     
-    @IBAction func forward(_ sender: Any) {
-        print("forward")
-        var value: UInt8 = 3
-        
-        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
-        
-        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
-    }
     
-    @IBAction func backward(_ sender: Any) {
-        print("backward")
-        var value: UInt8 = 4
-        
-        let data = NSData(bytes: &value, length: MemoryLayout<UInt8>.size)
-        
-        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
-    }
 }
 
