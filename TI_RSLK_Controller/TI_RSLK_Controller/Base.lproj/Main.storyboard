@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Left&amp;Right" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWa-hw-2nj">
-                                <rect key="frame" x="68" y="60" width="244" height="84"/>
+                                <rect key="frame" x="68" y="240" width="244" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLA-mK-hue">
-                                <rect key="frame" x="621" y="0.0" width="124" height="84"/>
+                                <rect key="frame" x="621" y="309" width="124" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,18 +54,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DWa-hw-2nj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="2pN-3H-Gie"/>
-                            <constraint firstItem="kDa-go-Jy2" firstAttribute="top" secondItem="DWa-hw-2nj" secondAttribute="bottom" constant="38" id="3Yj-ee-H7S"/>
+                            <constraint firstItem="DWa-hw-2nj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="240" id="2pN-3H-Gie"/>
+                            <constraint firstItem="kDa-go-Jy2" firstAttribute="top" secondItem="DWa-hw-2nj" secondAttribute="bottom" constant="-142" id="3Yj-ee-H7S"/>
                             <constraint firstItem="cLA-mK-hue" firstAttribute="leading" secondItem="j7p-aX-VoQ" secondAttribute="leading" constant="48" id="50P-sL-umi"/>
                             <constraint firstItem="kDa-go-Jy2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6BG-Pb-ndo"/>
                             <constraint firstItem="DWa-hw-2nj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="ANf-r6-Pla"/>
                             <constraint firstItem="DWa-hw-2nj" firstAttribute="centerX" secondItem="kDa-go-Jy2" secondAttribute="centerX" id="BP9-pS-2MC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="j7p-aX-VoQ" secondAttribute="trailing" constant="59" id="CKo-JL-lzZ"/>
                             <constraint firstItem="cLA-mK-hue" firstAttribute="trailing" secondItem="j7p-aX-VoQ" secondAttribute="trailing" constant="-48" id="UXo-wX-PXv"/>
-                            <constraint firstItem="cLA-mK-hue" firstAttribute="firstBaseline" secondItem="DWa-hw-2nj" secondAttribute="firstBaseline" constant="-60" id="meI-QZ-8s1"/>
+                            <constraint firstItem="cLA-mK-hue" firstAttribute="firstBaseline" secondItem="DWa-hw-2nj" secondAttribute="firstBaseline" constant="69" id="meI-QZ-8s1"/>
                             <constraint firstItem="kDa-go-Jy2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="wMX-jO-osp"/>
                             <constraint firstItem="j7p-aX-VoQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wPy-IZ-rCv"/>
-                            <constraint firstItem="cLA-mK-hue" firstAttribute="baseline" secondItem="DWa-hw-2nj" secondAttribute="baseline" constant="-60" id="woW-WZ-nW7"/>
+                            <constraint firstItem="cLA-mK-hue" firstAttribute="baseline" secondItem="DWa-hw-2nj" secondAttribute="baseline" constant="69" id="woW-WZ-nW7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

@@ -14,9 +14,13 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        leftRightIndicator.text = String(Int(leftRightSliderOutlet.value), radix: 2)
-        goBackIndicator.text = String(Int(goBackSliderOutlet.value), radix: 2)
+        leftRightIndicator.text = String(Int(leftRightSliderOutlet.value))
+        goBackIndicator.text = String(Int(goBackSliderOutlet.value))
         goBackSliderOutlet.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
+        
+        let birdCategory: UInt32 = 2 << 3
+        print(birdCategory)
+        
     }
 
     var manager:CBCentralManager!
@@ -164,17 +168,28 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     
     @IBAction func leftRightSlider(_ sender: UISlider) {
         var leftRightText:String
-        leftRightText = String(Int(leftRightSliderOutlet.value), radix: 2)
+        leftRightText = String(Int(leftRightSliderOutlet.value))
         leftRightIndicator.text = leftRightText
-        
-        //var leftRightValue:Int? = Int(leftRightText)
-        let data = NSData(bytes: &leftRightText, length: MemoryLayout<UInt8>.size)
-        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+
+//        var leftRightValue:Int? = Int(leftRightSliderOutlet.value)
+//        print(Int(leftRightText) ?? 0)
+//        let data = NSData(bytes: &leftRightValue, length: MemoryLayout<UInt8>.size)
+//        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+        combineSlider12(slider1ValueIs: Int(leftRightSliderOutlet.value), slider2ValueIs: Int(goBackSliderOutlet.value))
     }
     
     @IBAction func goBackSlider(_ sender: UISlider) {
-        goBackIndicator.text = String(Int(goBackSliderOutlet.value), radix: 2)
+        goBackIndicator.text = String(Int(goBackSliderOutlet.value))
+        combineSlider12(slider1ValueIs: Int(leftRightSliderOutlet.value), slider2ValueIs: Int(goBackSliderOutlet.value))
     }
+    
+    func combineSlider12(slider1ValueIs slider1Num:Int, slider2ValueIs slider2Num:Int) {
+        //combined = slider2 (MSB) + slider1 (LSB)
+        var combinedValue: Int = (slider2Num << 4) + slider1Num
+        let data = NSData(bytes: &combinedValue, length: MemoryLayout<UInt8>.size)
+        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
+    }
+    
     
     
 }
