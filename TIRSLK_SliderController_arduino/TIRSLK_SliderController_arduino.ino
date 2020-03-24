@@ -19,8 +19,8 @@ void loop(){
 
   if(Serial.available() > 0){
     dataIn = Serial.read();
-    Serial.print("Recieved data = ");
-    Serial.println(dataIn);
+//    Serial.print("Recieved data = ");
+//    Serial.println(dataIn);
     displayBinary(dataIn);
     //dataRecorded=0;
   }
@@ -31,8 +31,8 @@ void displayBinary(byte numToShow)
 {
   for (int i =0;i<numPins;i++)
   {
-    Serial.print("bit read = ");
-    Serial.println(bitRead(numToShow, i)==1);
+//    Serial.print("bit read = ");
+//    Serial.println(bitRead(numToShow, i)==1);
     
     if (bitRead(numToShow, i)==1)
     {

@@ -10,14 +10,20 @@ import UIKit
 import CoreBluetooth
 
 class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDelegate {
-
+    @IBOutlet var leftRightSliderOutlet: UISlider!
+    @IBOutlet var leftRightIndicator: UILabel!
+    @IBOutlet var goBackSliderOutlet: UISlider!
+    @IBOutlet var goBackIndicator: UILabel!
+    @IBOutlet var directionLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         leftRightIndicator.text = String(Int(leftRightSliderOutlet.value))
         goBackIndicator.text = String(Int(goBackSliderOutlet.value))
-        goBackSliderOutlet.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
-        
+        goBackSliderOutlet.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
+        self.directionLbl.text = "Forward"
+        self.directionLbl.backgroundColor = UIColor.green
         let birdCategory: UInt32 = 2 << 3
         print(birdCategory)
         
@@ -161,10 +167,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
 //        peripheral.writeValue(data as Data, for: characteristic,type: CBCharacteristicWriteType.withoutResponse)
 //    }
     
-    @IBOutlet var leftRightSliderOutlet: UISlider!
-    @IBOutlet var leftRightIndicator: UILabel!
-    @IBOutlet var goBackSliderOutlet: UISlider!
-    @IBOutlet var goBackIndicator: UILabel!
+
     
     @IBAction func leftRightSlider(_ sender: UISlider) {
         var leftRightText:String
@@ -179,7 +182,19 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     }
     
     @IBAction func goBackSlider(_ sender: UISlider) {
-        goBackIndicator.text = String(Int(goBackSliderOutlet.value))
+        if (goBackSliderOutlet.value > 7) {
+            goBackIndicator.text = String(Int(goBackSliderOutlet.value) - 8)
+            directionLbl.text = "Forward"
+            self.directionLbl.backgroundColor = UIColor.green
+        }
+        else {
+            goBackIndicator.text = String(7 - Int(goBackSliderOutlet.value))
+            directionLbl.text = "Backward: "
+            self.directionLbl.backgroundColor = UIColor.red
+        }
+        
+        
+        
         combineSlider12(slider1ValueIs: Int(leftRightSliderOutlet.value), slider2ValueIs: Int(goBackSliderOutlet.value))
     }
     
